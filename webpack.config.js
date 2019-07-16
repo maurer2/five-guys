@@ -51,6 +51,11 @@ module.exports = {
             loader: 'file-loader',
           },
         ],
+      },
+      // JSON
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
