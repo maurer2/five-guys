@@ -2,36 +2,60 @@
 @import './styles/generic.scss';
 
 .wrapper {
-  padding: 2rem;
+  padding: $spacing / 2;
 }
 
 .page {
   margin: auto;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid #e8e8e8;
   max-width: 380px;
 }
 
 .nav {
-  padding: 2rem;
-  border-bottom: 1px solid black;
+  padding: 1rem;
 
   .nav-box {
+    padding: $spacing * 0.75;
     width: 100%;
+    border: 0;
+    border-radius: 0;
+    font-size: 0.85rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #e8e8e8;
+    color: #000;
+
+    // arrow
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
+    background-repeat: no-repeat;
+    background-position: calc(100% - #{$spacing / 2}) center;
+  }
+
+  // ie
+  select::-ms-expand {
+    display: none;
   }
 }
 
 .hero {
-  padding: 0 2rem;
+  padding: $spacing $spacing 0 $spacing;
 
   .hero-image {
     display: block;
+    width: 150px;
+    height: auto;
+
+    @supports(object-position: -5px) {
+      object-position: -5px;
+    }
   }
 }
 
 .header {
   display: flex;
-  padding: 2rem;
+  padding: 0 $spacing;
   background: #e8024f;
   color: #fff;
 
@@ -41,48 +65,64 @@
     flex-basis: 0;
 
     & + .header-column {
+      margin-left: 0.5rem;
       flex-grow: 0;
     }
   }
 
   .title {
-    margin: 0;
+    margin-top: $spacing * 1.25;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
   }
 
-  .team-logo {
-    width: 50px;
+  .position {
+    margin-bottom: $spacing * 1.25;
+    font-size: 1rem;
+  }
+
+  .logo {
+    width: 80px;
+    padding: $spacing / 4;
     height: auto;
+    transform: translateY(-45%);
+    border: 1px solid black;
+    background: #fff;
 
     @supports(object-fit: contain) {
-      height: 50px;
-      padding: 1rem;
+      height: 80px;
       object-fit: contain;
       border-radius: 50%;
-      box-sizing: content-box;
-      background: #fff;
+      // box-sizing: content-box;
     }
   }
 }
 
 .statistics {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 2rem;
+  padding: 0 $spacing $spacing $spacing;
   background: #e8024f;
   color: #fff;
 
-  .statistics-key {
-    flex-basis: 75%;
+  .statistics-entry {
+    display: flex;
+    margin: 0;
+    padding: 1rem 0.75rem;
     background: #fff;
+    font-size: 0.85rem;
+
+    & + .statistics-entry {
+      margin-top: $spacing / 4;
+    }
+  }
+
+  .statistics-key {
+    margin-right: auto;
     color: #000;
   }
 
   .statistics-value {
-    margin: 0;
-    flex-basis: 25%;
-    background: #fff;
+    margin-left: $spacing / 2;
     color: #000;
-    text-align: right;
+    font-weight: bold;
   }
 }
