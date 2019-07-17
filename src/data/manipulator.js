@@ -6,7 +6,7 @@ export function getPlayers(playersData) {
       id: player.id,
       firstName: player.name.first,
       lastName: player.name.last,
-      fullname: `${player.name.first} ${player.name.last}`,
+      fullName: `${player.name.first} ${player.name.last}`,
       age: player.age,
       team: player.currentTeam.name
     }
@@ -15,8 +15,4 @@ export function getPlayers(playersData) {
   });
 
   return players;
-}
-
-export function getPlayerNames(players) {
-  return players.map(player => player.fullname);
 }

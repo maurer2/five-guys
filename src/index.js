@@ -1,45 +1,36 @@
-// import Cat from './images/cat.jpeg';
-import data from '!./data/data.json';
-import { getPlayers, getPlayerNames } from './data/manipulator';
-
-// components
-//import menu from './components/menu';
-
+// styles
 import './style.scss';
 
+// data
+import data from '!./data/data.json';
+import { getPlayers } from './data/manipulator';
+
+// js
+import State from './scripts/state';
+import menu from './scripts/menu';
+
 const players = getPlayers(data.players);
+const state = new State(players);
 
-console.log(players);
-
-const menu = (players) => {
-  const navEntries = getPlayerNames(players);
-
-  return `
-    <nav>
-      <a href="#">${ navEntries.join('') }</a>
-      <hr />
-    </div>
-  `;
+const refreshPage = () => {
+  console.log('refresh page');
 }
 
+// debug
+window.state = state;
 
-const menuElement = document.createElement('div');
-menuElement.innerHTML = menu(players);
+// menu
+const menuMarkup = menu(state.getPlayerNamesAndId());
+const menuDomElement = document.querySelector('.nav-box');
 
-document.body.append(menuElement);
+menuDomElement.innerHTML = menuMarkup;
+menuDomElement.addEventListener('change', (event) => {
+  const element = event.target;
+  const options = element.options;
 
+  const selectedOption = options[element.selectedIndex];
+  const selectedId = selectedOption.value;
 
-// teststuff
-/*
-const ImageTest = new Image();
-ImageTest.src = Cat;
-ImageTest.setAttribute('width', '320');
+  console.log(selectedId);
+})
 
-const testDiv = document.createElement('div');
-testDiv.setAttribute('class', 'cat');
-const testText = document.createTextNode('Cat');
-testDiv.appendChild(testText);
-
-document.body.appendChild(testDiv);
-document.body.appendChild(ImageTest);
-*/
