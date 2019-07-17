@@ -1,6 +1,88 @@
-.cat {
-  width: 100px;
-  height: 100px;
-  background: black;
-  color: white;
+@import './styles/variables.scss';
+@import './styles/generic.scss';
+
+.wrapper {
+  padding: 2rem;
+}
+
+.page {
+  margin: auto;
+  width: 100%;
+  border: 1px solid black;
+  max-width: 380px;
+}
+
+.nav {
+  padding: 2rem;
+  border-bottom: 1px solid black;
+
+  .nav-box {
+    width: 100%;
+  }
+}
+
+.hero {
+  padding: 0 2rem;
+
+  .hero-image {
+    display: block;
+  }
+}
+
+.header {
+  display: flex;
+  padding: 2rem;
+  background: #e8024f;
+  color: #fff;
+
+  .header-column {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+
+    & + .header-column {
+      flex-grow: 0;
+    }
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  .team-logo {
+    width: 50px;
+    height: auto;
+
+    @supports(object-fit: contain) {
+      height: 50px;
+      padding: 1rem;
+      object-fit: contain;
+      border-radius: 50%;
+      box-sizing: content-box;
+      background: #fff;
+    }
+  }
+}
+
+.statistics {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 2rem;
+  background: #e8024f;
+  color: #fff;
+
+  .statistics-key {
+    flex-basis: 75%;
+    background: #fff;
+    color: #000;
+  }
+
+  .statistics-value {
+    margin: 0;
+    flex-basis: 25%;
+    background: #fff;
+    color: #000;
+    text-align: right;
+  }
 }
