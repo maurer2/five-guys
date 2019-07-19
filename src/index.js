@@ -8,10 +8,26 @@ import { getPlayers } from './data/manipulator';
 // js
 import State from './scripts/state';
 import Menu from './scripts/menu';
+import header from './scripts/header';
 
 // scripts
 const players = getPlayers(data.players);
 const state = new State(players);
+
+const updatePage = () => {
+  // menu
+  selectMenu.update(
+    state.getPlayerNamesAndId(),
+    state.getActivePlayer(),
+  )
+
+  // header
+  header(
+    document.querySelector('.header'),
+    state.getPlayerNamesAndId(),
+    state.getActivePlayer(),
+  )
+}
 
 // debug
 window.state = state;
@@ -24,10 +40,7 @@ const selectMenu = new Menu(
   (newActivePlayer) => {
     state.setActivePlayer(newActivePlayer);
 
-    selectMenu.update(
-      state.getPlayerNamesAndId(),
-      state.getActivePlayer(),
-    )
+    updatePage();
   }
 );
 selectMenu.render();

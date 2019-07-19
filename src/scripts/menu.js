@@ -28,7 +28,7 @@ export default class Menu {
   }
 
   render() {
-    const { players, activePlayer } = this;
+    const { players, activePlayer, menuDomElement } = this;
     const indexActivePlayer = players.findIndex((player) => player.id === activePlayer);
 
     const optionElements = players.map((player, index) => `
@@ -38,14 +38,16 @@ export default class Menu {
     );
 
     const defaultOptionElement = `
-      <option value="" selected="${indexActivePlayer == -1}" disabled>Select a player...</option>
+      <option value="" selected="${indexActivePlayer === -1}" disabled>
+        Select a player...
+      </option>
     `
 
-    const selectInnerHTML = `
+    menuDomElement.innerHTML = `
       ${defaultOptionElement}
       ${optionElements.join('')}
     `
-    this.menuDomElement.innerHTML = selectInnerHTML;
-    this.menuDomElement.value = (indexActivePlayer == -1) ? '' : activePlayer;
+
+    menuDomElement.value = (indexActivePlayer === -1) ? '' : activePlayer;
   }
 };
