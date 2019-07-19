@@ -17,7 +17,7 @@ export default class Menu {
     const selectedOption = options[element.selectedIndex];
     const selectedValue = selectedOption.value;
 
-    this.cb(selectedValue);
+    this.cb(parseInt(selectedValue, 10));
   }
 
   update(players, activePlayer) {
@@ -29,21 +29,21 @@ export default class Menu {
 
   render() {
     const { players, activePlayer } = this;
-    let indexActivePlayer = players.findIndex((player) => player.id == activePlayer);
-
-    if (activePlayer === null) {
-      indexActivePlayer = -1;
-    }
+    const indexActivePlayer = players.findIndex((player) => player.id === activePlayer);
 
     const optionElements = players.map((player, index) => `
-      <option value="${player.id}" selected="${index == indexActivePlayer}">
+      <option value="${player.id}" selected="${index === indexActivePlayer}">
         ${player.fullName}
       </option>`
     );
 
-    const selectInnerHTML = `
+    const defaultOptionElement = `
       <option value="" selected="${indexActivePlayer == -1}" disabled>Select a player...</option>
-      ${optionElements.join()}
+    `
+
+    const selectInnerHTML = `
+      ${defaultOptionElement}
+      ${optionElements.join('')}
     `
     this.menuDomElement.innerHTML = selectInnerHTML;
     this.menuDomElement.value = (indexActivePlayer == -1) ? '' : activePlayer;
