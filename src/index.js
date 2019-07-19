@@ -7,30 +7,27 @@ import { getPlayers } from './data/manipulator';
 
 // js
 import State from './scripts/state';
-import menu from './scripts/menu';
+import Menu from './scripts/menu';
 
+// scripts
 const players = getPlayers(data.players);
 const state = new State(players);
-
-const refreshPage = () => {
-  console.log('refresh page');
-}
 
 // debug
 window.state = state;
 
 // menu
-const menuMarkup = menu(state.getPlayerNamesAndId());
-const menuDomElement = document.querySelector('.nav-box');
+const selectMenu = new Menu(
+  document.querySelector('.nav-box'),
+  state.getPlayerNamesAndId(),
+  state.getActivePlayer(),
+  (newActivePlayer) => {
+    state.setActivePlayer(newActivePlayer);
 
-menuDomElement.innerHTML = menuMarkup;
-menuDomElement.addEventListener('change', (event) => {
-  const element = event.target;
-  const options = element.options;
-
-  const selectedOption = options[element.selectedIndex];
-  const selectedId = selectedOption.value;
-
-  console.log(selectedId);
-})
-
+    selectMenu.update(
+      state.getPlayerNamesAndId(),
+      state.getActivePlayer(),
+    )
+  }
+);
+selectMenu.render();

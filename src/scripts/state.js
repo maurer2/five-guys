@@ -6,16 +6,16 @@ export default class State {
     console.log(players);
   }
 
-  setActivePlayer(id) {
-    if (id == null) {
+  setActivePlayer(activePlayer) {
+    if (activePlayer == null) {
       return;
     }
 
-    this.id = id;
+    this.activePlayer = activePlayer;
   }
 
   getActivePlayer() {
-    return '12345';
+    return this.activePlayer;
   }
 
   getPlayerNames() {
