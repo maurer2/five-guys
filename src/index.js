@@ -1,6 +1,8 @@
 // styles
 import './style.scss';
 
+import 'core-js/stable';
+
 // data
 import data from '!./data/data.json';
 import { getPlayers } from './data/manipulator';
@@ -14,6 +16,10 @@ import header from './scripts/header';
 const players = getPlayers(data.players);
 const state = new State(players);
 
+// debug
+window.state = state;
+
+// update page
 const updatePage = () => {
   // menu
   selectMenu.update(
@@ -24,13 +30,9 @@ const updatePage = () => {
   // header
   header(
     document.querySelector('.header'),
-    state.getPlayerNamesAndId(),
-    state.getActivePlayer(),
+    state.getPlayerData()
   )
 }
-
-// debug
-window.state = state;
 
 // menu
 const selectMenu = new Menu(

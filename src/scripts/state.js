@@ -26,14 +26,6 @@ export default class State {
     return this.players.map(player => player.fullname);
   }
 
-  getPlayerNames() {
-    if (this.players.length === 0) {
-      return [];
-    }
-
-    return this.players.map(player => player.fullname);
-  }
-
   getPlayerNamesAndId() {
     if (this.players.length === 0) {
       return [];
@@ -43,5 +35,19 @@ export default class State {
       fullName: player.fullName,
       id: player.id,
     }));
+  }
+
+  getActivePlayerById(activePlayerId) {
+    return this.players.filter(player => player.id === activePlayerId);
+  }
+
+  getPlayerData() {
+    if (this.activePlayer === null) {
+      return null;
+    }
+
+    const [activePlayer] = this.players.filter(player => player.id === this.activePlayer);
+
+    return activePlayer;
   }
 }
