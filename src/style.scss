@@ -42,10 +42,17 @@
 .hero {
   padding: $spacing $spacing 0 $spacing;
 
+  .default-image {
+    display: block;
+    width: 150px;
+    height: 190px;
+    overflow: hidden;
+  }
+
   .hero-image {
     display: block;
     width: 150px;
-    height: auto;
+    height: 190px;
 
     @supports(object-position: -5px) {
       object-position: -5px;
@@ -82,19 +89,21 @@
   }
 
   .crest {
+    padding: $spacing / 3;
     width: 80px;
-    padding: $spacing / 4;
     height: auto;
     transform: translateY(-45%);
-    border: 1px solid black;
     background: #fff;
 
     @supports(object-fit: contain) {
       height: 80px;
       object-fit: contain;
       border-radius: 50%;
-      // box-sizing: content-box;
     }
+  }
+
+  .crest-default {
+    padding: $spacing;
   }
 }
 

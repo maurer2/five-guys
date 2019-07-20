@@ -10,6 +10,7 @@ import { getPlayers } from './data/manipulator';
 // js
 import State from './scripts/state';
 import Menu from './scripts/menu';
+import hero from './scripts/hero';
 import header from './scripts/header';
 
 // scripts
@@ -25,6 +26,12 @@ const updatePage = () => {
   selectMenu.update(
     state.getPlayerNamesAndId(),
     state.getActivePlayer(),
+  )
+
+  // hero
+  hero(
+    document.querySelector('.hero'),
+    state.getPlayerData()
   )
 
   // header
