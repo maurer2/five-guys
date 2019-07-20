@@ -13,7 +13,7 @@
 }
 
 .nav {
-  padding: 1rem;
+  margin: $spacing $spacing ($spacing * 1.25) $spacing;
 
   .nav-box {
     padding: $spacing * 0.75;
@@ -44,8 +44,7 @@
   background-image: url(./images/background-pattern.png);
   background-position: right center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-origin: content-box;
+  // background-size: contain;
 
   .default-image {
     display: block;

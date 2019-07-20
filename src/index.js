@@ -12,6 +12,7 @@ import State from './scripts/state';
 import Menu from './scripts/menu';
 import hero from './scripts/hero';
 import header from './scripts/header';
+import statistics from './scripts/statistics';
 
 // scripts
 const players = getPlayers(data.players);
@@ -39,6 +40,12 @@ const updatePage = () => {
     document.querySelector('.header'),
     state.getPlayerData()
   )
+
+  // statistics
+  statistics(
+    document.querySelector('.statistics'),
+    state.getPlayerData()
+  );
 }
 
 // menu
