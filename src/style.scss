@@ -40,7 +40,12 @@
 }
 
 .hero {
-  padding: $spacing $spacing 0 $spacing;
+  padding: 0 $spacing;
+  background-image: url(./images/background-pattern.png);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-origin: content-box;
 
   .default-image {
     display: block;
