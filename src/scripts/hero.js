@@ -9,7 +9,7 @@ export default function header(domElement, playerData) {
       src="./images/players/p${playerData.id}.png"
       alt="player photo"
     />
-  `
+  `;
 
   domElement.innerHTML = markup;
 }

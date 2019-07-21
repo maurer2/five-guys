@@ -4,7 +4,7 @@ export default function statistics(domElement, playerData) {
   }
 
   const statisticsFields = Object.keys(playerData.statistics);
-  const statisticsElements = statisticsFields.map((statisticsField) => `
+  const statisticsElements = statisticsFields.map(statisticsField => `
     <dl class="statistics-entry">
       <dt class="statistics-key">${playerData.statistics[statisticsField].name}</dt>
       <dd class="statistics-value">${playerData.statistics[statisticsField].value}</dd>
@@ -13,7 +13,7 @@ export default function statistics(domElement, playerData) {
 
   const markup = `
     ${statisticsElements.join('')}
-  `
+  `;
 
   domElement.innerHTML = markup;
 }

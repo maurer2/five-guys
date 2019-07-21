@@ -15,7 +15,7 @@ export default function header(headerDomElement, playerData) {
         alt="${playerData.team.name}"
       />
     </div>
-  `
+  `;
 
   headerDomElement.innerHTML = newMarkup;
 }

@@ -12,7 +12,7 @@ export default class Menu {
 
   handleChangeEvent(event) {
     const element = event.target;
-    const options = element.options;
+    const { options } = element;
 
     const selectedOption = options[element.selectedIndex];
     const selectedValue = selectedOption.value;
@@ -29,25 +29,24 @@ export default class Menu {
 
   render() {
     const { players, activePlayer, menuDomElement } = this;
-    const indexActivePlayer = players.findIndex((player) => player.id === activePlayer);
+    const indexActivePlayer = players.findIndex(player => player.id === activePlayer);
 
     const optionElements = players.map((player, index) => `
       <option value="${player.id}" selected="${index === indexActivePlayer}">
         ${player.fullName}
-      </option>`
-    );
+      </option>`);
 
     const defaultOptionElement = `
       <option value="" selected="${indexActivePlayer === -1}" disabled>
         Select a player...
       </option>
-    `
+    `;
 
     menuDomElement.innerHTML = `
       ${defaultOptionElement}
       ${optionElements.join('')}
-    `
+    `;
 
     menuDomElement.value = (indexActivePlayer === -1) ? '' : activePlayer;
   }
-};
+}
