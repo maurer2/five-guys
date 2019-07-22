@@ -1,11 +1,12 @@
 // styles
 import './style.scss';
 
+// core
 import 'core-js/stable';
 
 // data
-import data from '!./data/data.json';
-import { getPlayers } from './data/manipulator';
+import * as data from '!./data/data.json';
+import getPlayers from './data/manipulator';
 
 // js
 import State from './scripts/state';

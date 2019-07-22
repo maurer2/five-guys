@@ -3,16 +3,30 @@ export default function statistics(domElement, playerData) {
     return;
   }
 
-  const statisticsFields = Object.keys(playerData.statistics);
-  const statisticsElements = statisticsFields.map(statisticsField => `
+  const { statistics: statisticsData } = playerData;
+  const fieldMapping = {
+    appearances: 'Appearances',
+    goals: 'Goals',
+    goalsAssist: 'Assists',
+    goalsPerMatch: 'Goals per match',
+    passesPerMinute: 'Passes per minute',
+  };
+  const fields = Object.keys(fieldMapping);
+
+  const statisticsEntries = fields.map(field => `
     <dl class="statistics-entry">
-      <dt class="statistics-key">${playerData.statistics[statisticsField].name}</dt>
-      <dd class="statistics-value">${playerData.statistics[statisticsField].value}</dd>
+      <dt class="statistics-key">${fieldMapping[field]}</dt>
+      <dd class="statistics-value">
+        ${(field === 'goalsPerMatch' || field === 'passesPerMinute')
+          ? statisticsData[field].toFixed(2)
+          : statisticsData[field]
+        }
+      </dd>
     </dl>
   `);
 
   const markup = `
-    ${statisticsElements.join('')}
+    ${statisticsEntries.join('')}
   `;
 
   domElement.innerHTML = markup;

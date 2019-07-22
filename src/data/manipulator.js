@@ -1,11 +1,4 @@
 // helpers
-function getNestedProperty(containerArray, propertyName) {
-  const entry = containerArray.filter(entry => entry.name === propertyName);
-  const [value] = entry;
-
-  return value;
-}
-
 const positionFallback = 'Player';
 const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward', 'Striker', 'Winger'];
 function getSimplifyFieldPositon(detailedPosition) {
@@ -20,32 +13,40 @@ function getSimplifyFieldPositon(detailedPosition) {
   return value;
 }
 
-function calculateGoalsPerMatch(goalsObject, appearancesObject) {
-  const value = goalsObject.value / appearancesObject.value;
-
-  return {
-    name: 'Goals per Match',
-    value: value.toFixed(2),
-  };
+function getGoalsPerMatch(goals, appearances) {
+  return (goals === 0) ? 0 : goals / appearances;
 }
 
-function calculatePassesPerMinute(forwardsPassesObject, backwardsPassesObject, minsPlayedObject) {
-  const value = (forwardsPassesObject.value + backwardsPassesObject.value) / minsPlayedObject.value;
+function getPassesPerMinute(forwardPass, backwardPass, minsPlayed) {
+  const passes = forwardPass + backwardPass;
 
-  return {
-    name: 'Passes per Minute',
-    value: value.toFixed(2),
-  };
+  return (passes === 0) ? 0 : passes / minsPlayed;
 }
 
-export function getPlayers(playersData) {
+function getStatisticsValue(statistics, statisticsName) {
+  const entry = statistics.find(statisticsSingle => statisticsSingle.name === statisticsName);
+
+  return (entry === undefined) ? 0 : entry.value;
+}
+
+export default function getPlayers(playersData) {
   const players = playersData.map((playerData) => {
     const { player, stats } = playerData;
 
+    // stats - exisiting
+    const appearances = getStatisticsValue(stats, 'appearances');
+    const goals = getStatisticsValue(stats, 'goals');
+    const goalsAssist = getStatisticsValue(stats, 'goal_assist');
+    const forwardPass = getStatisticsValue(stats, 'fwd_pass');
+    const backwardPass = getStatisticsValue(stats, 'backward_pass');
+    const minsPlayed = getStatisticsValue(stats, 'mins_played');
+
+    // stats - calculated
+    const goalsPerMatch = getGoalsPerMatch(goals, appearances);
+    const passesPerMinute = getPassesPerMinute(forwardPass, backwardPass, minsPlayed);
+
     const playerMapped = {
       id: player.id,
-      // firstName: player.name.first,
-      // lastName: player.name.last,
       fullName: `${player.name.first} ${player.name.last}`,
       team: {
         name: player.currentTeam.name,
@@ -53,18 +54,11 @@ export function getPlayers(playersData) {
       },
       position: getSimplifyFieldPositon(player.info.positionInfo),
       statistics: {
-        appearances: getNestedProperty(stats, 'appearances'),
-        goals: getNestedProperty(stats, 'goals'),
-        // goalsAssist: getNestedProperty(stats, 'goal_assist'),
-        goalsPerMatch: calculateGoalsPerMatch(
-          getNestedProperty(stats, 'goals'),
-          getNestedProperty(stats, 'appearances'),
-        ),
-        passesPerMinute: calculatePassesPerMinute(
-          getNestedProperty(stats, 'fwd_pass'),
-          getNestedProperty(stats, 'backward_pass'),
-          getNestedProperty(stats, 'mins_played'),
-        ),
+        appearances,
+        goals,
+        goalsAssist,
+        goalsPerMatch,
+        passesPerMinute,
       },
     };
 
