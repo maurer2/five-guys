@@ -1,4 +1,6 @@
 export default function header(domElement, playerData) {
+  const parent = domElement;
+
   if (playerData === null) {
     return;
   }
@@ -11,5 +13,5 @@ export default function header(domElement, playerData) {
     />
   `;
 
-  domElement.innerHTML = markup;
+  parent.innerHTML = markup;
 }

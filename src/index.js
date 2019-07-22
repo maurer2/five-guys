@@ -5,6 +5,7 @@ import './style.scss';
 import 'core-js/stable';
 
 // data
+// eslint-disable-next-line
 import * as data from '!./data/data.json';
 import getPlayers from './data/manipulator';
 
@@ -22,33 +23,6 @@ const state = new State(players);
 // debug
 window.state = state;
 
-// update page
-const updatePage = () => {
-  // menu
-  selectMenu.update(
-    state.getPlayerNamesAndId(),
-    state.getActivePlayer(),
-  )
-
-  // hero
-  hero(
-    document.querySelector('.hero'),
-    state.getPlayerData()
-  )
-
-  // header
-  header(
-    document.querySelector('.header'),
-    state.getPlayerData()
-  )
-
-  // statistics
-  statistics(
-    document.querySelector('.statistics'),
-    state.getPlayerData()
-  );
-}
-
 // menu
 const selectMenu = new Menu(
   document.querySelector('.nav-box'),
@@ -57,7 +31,18 @@ const selectMenu = new Menu(
   (newActivePlayer) => {
     state.setActivePlayer(newActivePlayer);
 
-    updatePage();
-  }
+    // eslint disable-line
+    // menu
+    selectMenu.update(state.getPlayerNamesAndId(), state.getActivePlayer());
+
+    // hero
+    hero(document.querySelector('.hero'), state.getPlayerData());
+
+    // header
+    header(document.querySelector('.header'), state.getPlayerData());
+
+    // statistics
+    statistics(document.querySelector('.statistics'), state.getPlayerData());
+  },
 );
 selectMenu.render();

@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -31,7 +31,7 @@ module.exports = {
             loader: 'style-loader',
             options: {
               sourceMap: true,
-            }
+            },
           },
           'css-loader',
           {
@@ -40,8 +40,8 @@ module.exports = {
               outputStyle: 'expanded',
               sourceMap: false,
               data: '@import "./src/styles/variables.scss";',
-            }
-          }
+            },
+          },
         ],
       },
       // Images
@@ -57,15 +57,15 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json-loader',
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
       '~': path.resolve(__dirname, 'src/'),
     },
-    extensions: ['*', '.js', '.css', '.scss']
+    extensions: ['*', '.js', '.css', '.scss'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -86,7 +86,7 @@ module.exports = {
     */
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
-    })
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

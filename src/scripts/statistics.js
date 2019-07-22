@@ -1,4 +1,6 @@
 export default function statistics(domElement, playerData) {
+  const parent = domElement;
+
   if (playerData === null) {
     return;
   }
@@ -11,6 +13,7 @@ export default function statistics(domElement, playerData) {
     goalsPerMatch: 'Goals per match',
     passesPerMinute: 'Passes per minute',
   };
+
   const fields = Object.keys(fieldMapping);
 
   const statisticsEntries = fields.map(field => `
@@ -18,16 +21,14 @@ export default function statistics(domElement, playerData) {
       <dt class="statistics-key">${fieldMapping[field]}</dt>
       <dd class="statistics-value">
         ${(field === 'goalsPerMatch' || field === 'passesPerMinute')
-          ? statisticsData[field].toFixed(2)
-          : statisticsData[field]
-        }
+    ? statisticsData[field].toFixed(2)
+    : statisticsData[field]
+}
       </dd>
     </dl>
   `);
 
-  const markup = `
-    ${statisticsEntries.join('')}
-  `;
+  const markup = statisticsEntries.join('');
 
-  domElement.innerHTML = markup;
+  parent.innerHTML = markup;
 }

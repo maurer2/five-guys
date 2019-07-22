@@ -8,7 +8,7 @@ function getSimplifyFieldPositon(detailedPosition) {
     return positionFallback;
   }
 
-  const [value] = positions.filter((position => detailedPosition.includes(position)));
+  const value = positions.find((position => detailedPosition.includes(position)));
 
   return value;
 }
