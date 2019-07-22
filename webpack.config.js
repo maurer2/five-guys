@@ -33,12 +33,21 @@ module.exports = {
               sourceMap: true,
             },
           },
-          'css-loader',
+          // 'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: 'postcss.config.js',
+              },
+            },
+          },
           {
             loader: 'sass-loader',
             options: {
               outputStyle: 'expanded',
-              sourceMap: false,
+              sourceMap: true,
               data: '@import "./src/styles/variables.scss";',
             },
           },

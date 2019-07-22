@@ -6,11 +6,11 @@ export default function header(domElement, playerData) {
   }
 
   const newMarkup = `
-    <div class="header-column">
+    <div class="text-column">
       <h1 class="title">${playerData.fullName}</h1>
       <div class="position">${playerData.position}</div>
     </div>
-    <div class="header-column">
+    <div class="crest-column">
       <img
         class="crest"
         src="./images/teams/${playerData.team.id}.svg"
