@@ -70,12 +70,12 @@
   .text-column,
   .crest-column {
     flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
   }
 
   .crest-column {
-    margin-left: 0.5rem;
+    margin-left: $spacing / 2;
     flex-grow: 0;
   }
 
@@ -101,14 +101,13 @@
   .crest {
     padding: $spacing / 4;
     width: 83px;
-    height: auto;
+    height: 83px;
     transform: translateY(-45%);
     background: $background;
+    border-radius: 50%;
 
     @supports(object-fit: contain) {
-      height: 80px;
       object-fit: contain;
-      border-radius: 50%;
     }
   }
 

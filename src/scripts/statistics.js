@@ -1,7 +1,7 @@
 export default function statistics(domElement, playerData) {
   const parent = domElement;
 
-  if (playerData === null) {
+  if (playerData === null || domElement === null) {
     return;
   }
 

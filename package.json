@@ -1,7 +1,7 @@
 {
   "name": "five-guys",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bundle.js",
   "repository": "git@github.com:maurer2/five-guys.git",
   "author": "Martin",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.3",
     "core-js": "^3.1.4",
     "css-loader": "^3.0.0",
@@ -34,6 +35,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },

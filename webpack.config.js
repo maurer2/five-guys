@@ -1,7 +1,8 @@
 const path = require('path');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -77,22 +78,23 @@ module.exports = {
     extensions: ['*', '.js', '.css', '.scss'],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
       hash: true,
     }),
-    /*
     new CopyWebpackPlugin([
+      /*
       {
         from: './*.html',
       },
+      */
       {
         from: 'src/images',
         to: 'images',
-      }
+      },
     ]),
-    */
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
     }),

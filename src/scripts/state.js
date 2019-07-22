@@ -2,8 +2,6 @@ export default class State {
   constructor(players) {
     this.players = players;
     this.activePlayer = null;
-
-    console.log(players);
   }
 
   setActivePlayer(activePlayer) {
@@ -46,7 +44,7 @@ export default class State {
       return null;
     }
 
-    const [activePlayer] = this.players.filter(player => player.id === this.activePlayer);
+    const activePlayer = this.players.find(player => player.id === this.activePlayer);
 
     return activePlayer;
   }

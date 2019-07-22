@@ -1,7 +1,7 @@
 export default function header(domElement, playerData) {
   const parent = domElement;
 
-  if (playerData === null) {
+  if (playerData === null || domElement === null) {
     return;
   }
 
