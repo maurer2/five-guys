@@ -14,13 +14,13 @@ function getSimplifyFieldPositon(detailedPosition) {
 }
 
 function getGoalsPerMatch(goals, appearances) {
-  return (goals === 0) ? 0 : goals / appearances;
+  return (appearances === 0) ? 0 : goals / appearances;
 }
 
 function getPassesPerMinute(forwardPass, backwardPass, minsPlayed) {
   const passes = forwardPass + backwardPass;
 
-  return (passes === 0) ? 0 : passes / minsPlayed;
+  return (minsPlayed === 0) ? 0 : passes / minsPlayed;
 }
 
 function getStatisticsValue(statistics, statisticsName) {

@@ -1,4 +1,4 @@
-export default function header(domElement, playerData) {
+export default function hero(domElement, playerData) {
   const parent = domElement;
 
   if (playerData === null || domElement === null) {
